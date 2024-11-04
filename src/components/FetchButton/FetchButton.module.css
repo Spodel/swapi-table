@@ -1,0 +1,13 @@
+.fetchButton {
+  padding: 10px 15px;
+  margin: 5px;
+  background-color: #09ad11;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.fetchButton:hover {
+  background-color: #09750d;
+}
