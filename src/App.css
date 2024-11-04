@@ -31,11 +31,11 @@ td {
   color: white;
 }
 th {
-  background-color: #020202;
+  background-color: #0a0a0a;
 }
 tr:nth-child(even) {
-  background-color: #111111;
+  background-color: #0a0a0a;
 }
 tr:hover {
-  background-color: #948a8a;
+  background-color: #1b1a1a;
 }

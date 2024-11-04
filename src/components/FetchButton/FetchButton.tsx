@@ -1,9 +1,13 @@
 import React from 'react'
 import styles from './FetchButton.module.css'
-const FetchButton = ({ onFetch }) => {
+
+interface FetchButtonProps {
+  onFetch: () => void
+}
+const FetchButton: React.FC<FetchButtonProps> = ({ onFetch }) => {
   return (
     <button className={styles.fetchButton} onClick={onFetch}>
-      Fetch people
+      Fetch People
     </button>
   )
 }

@@ -4,10 +4,20 @@ import FetchButton from '../FetchButton/FetchButton'
 import ClearButton from '../ClearButton/ClearButton'
 import NoData from '../NoData/NoData'
 import styles from './PeopleTable.module.css'
-const PeopleTable = () => {
-  const [people, setPeople] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+
+interface Character {
+  name: string
+  height: string
+  mass: string
+  skin_color: string
+  hair_color: string
+}
+
+const PeopleTable: React.FC = () => {
+  const [people, setPeople] = useState<Character[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
+
   const fetchData = async () => {
     setLoading(true)
     setError('')
@@ -20,15 +30,18 @@ const PeopleTable = () => {
       setLoading(false)
     }
   }
+
   const clearData = () => {
     setPeople([])
   }
+
   return (
     <div>
       <FetchButton onFetch={fetchData} />
       <ClearButton onClear={clearData} />
+
       {loading && <div className={styles.loading}>Loading...</div>}
-      {error && <div>{error}</div>}
+      {error && <div className={styles.error}>{error}</div>}
       {people.length === 0 && !loading && <NoData />}
       {people.length > 0 && (
         <table>

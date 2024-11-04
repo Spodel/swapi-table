@@ -1,9 +1,13 @@
 import React from 'react'
 import styles from './ClearButton.module.css'
-const ClearButton = ({ onClear }) => {
+
+interface ClearButtonProps {
+  onClear: () => void
+}
+const ClearButton: React.FC<ClearButtonProps> = ({ onClear }) => {
   return (
     <button className={styles.clearButton} onClick={onClear}>
-      Clear data
+      Clear Table
     </button>
   )
 }
