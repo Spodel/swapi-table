@@ -28,8 +28,13 @@ class PeopleStore {
       this.loading = false
     }
   }
+
   clearPeople() {
     this.people = []
+  }
+
+  deleteCharacter(name: string) {
+    this.people = this.people.filter((character) => character.name !== name)
   }
 }
 

@@ -5,3 +5,22 @@
 .error {
   color: #ffd700;
 }
+
+.deleteButton {
+  padding: 10px 15px;
+  margin: 10px;
+  background-color: #d15039;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #974312;
+}
+
+.action {
+  width: 50px;
+}

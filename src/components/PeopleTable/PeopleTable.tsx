@@ -1,18 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import peopleStore from '../../store/PeopleStore'
 import FetchButton from '../FetchButton/FetchButton'
 import ClearButton from '../ClearButton/ClearButton'
 import NoData from '../NoData/NoData'
+import Modal from '../Modal/Modal'
 import styles from './PeopleTable.module.css'
 
 const PeopleTable: React.FC = observer(() => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [characterToDelete, setCharacterToDelete] = useState<string | null>(
+    null
+  )
+
   const fetchData = () => {
     peopleStore.fetchPeople()
   }
 
   const clearData = () => {
     peopleStore.clearPeople()
+  }
+
+  const openModal = (name: string) => {
+    setCharacterToDelete(name)
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setCharacterToDelete(null)
+  }
+
+  const confirmDelete = () => {
+    if (characterToDelete) {
+      peopleStore.deleteCharacter(characterToDelete)
+    }
+    closeModal()
   }
 
   return (
@@ -33,6 +56,7 @@ const PeopleTable: React.FC = observer(() => {
               <th>Mass</th>
               <th>Skin Color</th>
               <th>Hair Color</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -43,11 +67,24 @@ const PeopleTable: React.FC = observer(() => {
                 <td>{character.mass}</td>
                 <td>{character.skin_color}</td>
                 <td>{character.hair_color}</td>
+                <td className={styles.action}>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => openModal(character.name)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onConfirm={confirmDelete}
+      />
     </div>
   )
 })
