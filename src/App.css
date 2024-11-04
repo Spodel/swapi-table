@@ -1,11 +1,13 @@
 .App {
   text-align: center;
 }
+
 body {
   background-color: black;
   margin: 0;
   padding: 20px;
 }
+
 h1 {
   font-family: 'Star Wars';
   font-size: 72px;
@@ -17,11 +19,13 @@ h1 {
   letter-spacing: 4px;
   font-weight: bold;
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
+
 th,
 td {
   padding: 10px;
@@ -30,12 +34,15 @@ td {
   font-size: 16px;
   color: white;
 }
+
 th {
   background-color: #0a0a0a;
 }
+
 tr:nth-child(even) {
   background-color: #0a0a0a;
 }
+
 tr:hover {
   background-color: #1b1a1a;
 }
