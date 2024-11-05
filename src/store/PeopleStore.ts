@@ -1,16 +1,14 @@
 import { makeAutoObservable } from 'mobx'
 import axios from 'axios'
+import { Character } from '../types'
+import { sortPeople } from '../utils/sortPeople'
 
 class PeopleStore {
-  people: Array<{
-    name: string
-    height: string
-    mass: string
-    skin_color: string
-    hair_color: string
-  }> = []
+  people: Character[] = []
   loading: boolean = false
   error: string = ''
+  sortOrder: 'name' | 'height' | 'mass' | null = null
+  sortDirection: 'asc' | 'desc' = 'asc'
 
   constructor() {
     makeAutoObservable(this)
@@ -35,6 +33,21 @@ class PeopleStore {
 
   deleteCharacter(name: string) {
     this.people = this.people.filter((character) => character.name !== name)
+  }
+
+  setSortOrder(order: 'name' | 'height' | 'mass' | null) {
+    if (this.sortOrder === order) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc'
+    } else {
+      this.sortOrder = order
+      this.sortDirection = 'asc'
+    }
+  }
+
+  get sortedPeople() {
+    return this.sortOrder
+      ? sortPeople(this.people, this.sortOrder, this.sortDirection)
+      : this.people
   }
 }
 

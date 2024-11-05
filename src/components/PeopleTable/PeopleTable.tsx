@@ -38,6 +38,10 @@ const PeopleTable: React.FC = observer(() => {
     closeModal()
   }
 
+  const handleSort = (column: 'name' | 'height' | 'mass') => {
+    peopleStore.setSortOrder(column)
+  }
+
   return (
     <div>
       <FetchButton onFetch={fetchData} />
@@ -51,16 +55,40 @@ const PeopleTable: React.FC = observer(() => {
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Height</th>
-              <th>Mass</th>
+              <th>
+                Name
+                <button
+                  className={styles.sortButton}
+                  onClick={() => handleSort('name')}
+                >
+                  ↓↑
+                </button>
+              </th>
+              <th>
+                Height
+                <button
+                  className={styles.sortButton}
+                  onClick={() => handleSort('height')}
+                >
+                  ↓↑
+                </button>
+              </th>
+              <th>
+                Mass
+                <button
+                  className={styles.sortButton}
+                  onClick={() => handleSort('mass')}
+                >
+                  ↓↑
+                </button>
+              </th>
               <th>Skin Color</th>
               <th>Hair Color</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {peopleStore.people.map((character) => (
+            {peopleStore.sortedPeople.map((character) => (
               <tr key={character.name}>
                 <td>{character.name}</td>
                 <td>{character.height}</td>

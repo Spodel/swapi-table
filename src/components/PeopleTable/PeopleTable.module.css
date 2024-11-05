@@ -1,7 +1,4 @@
-.loading {
-  color: #ffd700;
-}
-
+.loading,
 .error {
   color: #ffd700;
 }
@@ -19,6 +16,14 @@
 
 .deleteButton:hover {
   background-color: #974312;
+}
+
+.sortButton {
+  background-color: #0a0a0a;
+  margin: 10px;
+  border: none;
+  color: #ffd700;
+  cursor: pointer;
 }
 
 .action {
