@@ -1,9 +1,9 @@
 .fetchButton {
   padding: 10px 15px;
   margin: 10px;
-  background-color: #09ad11;
-  color: white;
-  border: none;
+  background-color: black;
+  color: #ffd700;
+  border: solid 1px #ffd700;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;

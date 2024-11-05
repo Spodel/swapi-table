@@ -5,6 +5,7 @@ import FetchButton from '../FetchButton/FetchButton'
 import ClearButton from '../ClearButton/ClearButton'
 import NoData from '../NoData/NoData'
 import Modal from '../Modal/Modal'
+import Loader from '../Loader/Loader'
 import styles from './PeopleTable.module.css'
 
 const PeopleTable: React.FC = observer(() => {
@@ -45,8 +46,11 @@ const PeopleTable: React.FC = observer(() => {
   return (
     <div>
       <FetchButton onFetch={fetchData} />
-      <ClearButton onClear={clearData} />
-      {peopleStore.loading && <div className={styles.loading}>Loading...</div>}
+      <ClearButton
+        onClear={clearData}
+        disabled={peopleStore.people.length === 0}
+      />
+      {peopleStore.loading && <Loader />}
       {peopleStore.error && (
         <div className={styles.error}>{peopleStore.error}</div>
       )}
